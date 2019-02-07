@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<modification xmlns="http://www.simplemachines.org/xml/modification" xmlns:smf="http://www.simplemachines.org/">
+	<id>LiamHammett:Kongregate</id>
+	<version>2.0</version>
+
+	<file name="$themedir/Profile.template.php">
+		<operation>
+			<search position="before"><![CDATA[<td>', $context['member']['yim']['link_text'], '</td>]]></search>
+			<add><![CDATA[</tr><tr><td><b>', $txt['kongregate_title'], ': </b></td>
+<td>', !empty($context['member']['options']['kongregate']) ? '<a href="http://www.kongregate.com/accounts/' . $context['member']['options']['kongregate'] . '" target="_blank">' . $context['member']['options']['kongregate'] . '</a>'  : '', '</td>
+]]></add>
+		</operation>
+		<operation>
+			<search position="before"><![CDATA[<td><input type="text" name="YIM" maxlength="32" size="24" value="', $context['member']['yim']['name'], '" /></td>]]></search>
+			<add><![CDATA[</tr><tr><td><b>', $txt['kongregate_title'], ':</b><div class="smalltext">', $txt['kongregate_desc'], '</div></td>
+			<td><input type="text" name="default_options[kongregate]" maxlength="25" size="24" value="', @$context['member']['options']['kongregate'], '" /></td>
+			]]></add>
+		</operation>
+	</file>
+
+	<file name="$themedir/Display.template.php">
+		<operation>
+			<search position="before"><![CDATA[', $message['member']['yim']['link'],]]></search>
+			<add><![CDATA[
+			!empty($message['member']['options']['kongregate']) ? '<a href="http://www.kongregate.com/accounts/' . $message['member']['options']['kongregate'] . '" target="_blank"><img border="0" src="' . $settings['images_url'] . '/kongregate.gif" alt="' . $message['member']['options']['kongregate'] . '"></a>' : '',
+            ]]></add>
+		</operation>
+	</file>
+</modification>
